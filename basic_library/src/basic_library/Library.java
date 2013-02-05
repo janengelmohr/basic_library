@@ -1,16 +1,13 @@
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
+
 package basic_library;
 
 /**
  *
- * @author jan
+ * @author moarCookies
  */
 public class Library {
 
-    private String[] inventory = null;
+    private String[] inventory = new String[20];
     private String[][] userAccounts = new String[20][6];
     private static Library instance = null;
     
@@ -23,7 +20,11 @@ public class Library {
         }
             return instance;
         }
-    
+    /**
+     * 
+     * @param newBook
+     * @return true if book was added, false otherwise
+     */
     public boolean addBook(String newBook) {
     int counter = 0;
     for(String s : inventory) {
@@ -49,6 +50,11 @@ public class Library {
         }
         return false;
     }
+    /**
+     * 
+     * @param book
+     * @return book if book was found, null otherwise
+     */
     
     public String getBook(String book) {
         for(String s : inventory) {
@@ -84,6 +90,12 @@ public class Library {
         }
         return false;
     }
+    /**
+     * 
+     * @param String book
+     * @param String user
+     * @return true if book could be returned, false otherwise
+     */
     
     public boolean returnBook(String book, String user) {
         if(!hasUserAccount(user)) {
@@ -104,7 +116,11 @@ public class Library {
         }
         return false;
     }
-    
+    /**
+     * 
+     * @param String userAccount
+     * @return true if user has an account, false otherwise
+     */
     
     public boolean hasUserAccount(String pi) {
         for(String[] s : userAccounts) {
@@ -114,12 +130,24 @@ public class Library {
         }
         return false;
     }
+    /**
+     * 
+     * @param String ua
+     * @return true if account was added, false otherwise
+     */
+    public boolean addUserAccount(String ua) {
+        if(hasUserAccount(ua)) {
+            return false;
+        }
+        int counter=0;
+        for(String[] s : userAccounts) {
+            counter++;
+        }
+        if(counter<20) {
+            userAccounts[counter][0] = ua;
+                    return true;
+        }
+        return false;
+    }
     
 }
-
-    
-    
-
-
-    
-
